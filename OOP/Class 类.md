@@ -29,7 +29,7 @@ public:
 };
 ```
 
-### 析构函数(distructor)
+### 析构函数(destructor)
 在销毁对象时被调用。  
 如果在堆(heap)上手动分配了任何类型的内存，那么则需要手动清理，此时就可以利用析构函数。
 ```
@@ -97,20 +97,32 @@ public:
 };
 ```
 则只会出现Created Entity with 6!
-### 创建对象
-两种方式  
+### 隐式转换
 ```
-//堆对象（需手动释放）
-Entity* e = new Entity();
-e->GetName();  //通过指针访问
-delete e;      //必须手动释放否则发生内存泄漏
-/*
-Entity* e2 = e;
-delete e2;	   //e和e2指向的是同一处堆内存空间，只需要delete其中一个即可
-*/
-//栈对象（自动释放）
-Entity e1 = Entity();//just "Entity e1" in C++17
-e1.GetName();  //直接访问
-// e1 在离开作用域时自动调用析构函数
+class Entity
+{
+private:
+	string m_Name;
+	int m_Age;
+public:
+	Entity(const string& name) : m_Name("name"), m_Age(0) {}
+	Entity(int age) : m_Name("unknown"), m_Age(age) {};
+};
+
+int main()
+{
+	Entity e1 = string("name");//Entity e1 = "name"会报错，因为C++只允许一次用户定义的隐式转换
+	Entity e2 = 21;
+           
+	cin.get();
+	return 0;
+}
 ```
-如何选择？对象太大或显式控制对象的生存期就在heap上创建，否则创建在stack
+如果在构造函数前面加上关键字explicit，则表示该构造函数不允许出现隐式转换，比如
+```
+explicit Entity(int age) : m_Name("unknown"), m_Age(age) {};
+
+Entity e2 = 21;			//报错
+Entity e3 = (Entity)21;	//valid
+Entity e4(21);			//valid
+```
