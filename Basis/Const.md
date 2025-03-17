@@ -15,3 +15,29 @@ class MyClass {
 const MyClass obj;
 obj.readOnlyFunc(); // 合法调用
 ```
+### 关键字Mutable
+将数据成员设置为可变的，就可以在const函数中对mutable变量进行修改。一般与const配合使用，有时也用于lambda表达式中。
+```
+class Entity
+{
+private:
+  string m_Name;
+  mutable int m_DebugCount;
+public:
+  const string& GetName() const
+  {
+    m_DebugCount++;
+    return m_Name;
+  }
+};
+
+int main()
+{
+  const Entity e;
+  e.GetName();
+
+  cin.get();
+  return 0;
+}
+```
+
