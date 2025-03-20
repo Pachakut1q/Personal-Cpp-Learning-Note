@@ -1,4 +1,4 @@
-### 关键字Const
+### 关键字c onst
 ```
 const int MAX_SIZE = 100; // 全局常量（静态存储区）
 void func() {
@@ -15,7 +15,7 @@ class MyClass {
 const MyClass obj;
 obj.readOnlyFunc(); // 合法调用
 ```
-### 关键字Mutable
+### 关键字mutable
 将数据成员设置为可变的，就可以在const函数中对mutable变量进行修改。一般与const配合使用，有时也用于lambda表达式中。
 ```
 class Entity
