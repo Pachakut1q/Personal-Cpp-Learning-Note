@@ -20,7 +20,7 @@ public:
   void PrintName()
   {
     std::cout << Name << std::endl;
-  {
+  }
 };
 
 int main()
