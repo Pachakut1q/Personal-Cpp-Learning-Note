@@ -1,4 +1,4 @@
-### 关键字 this
+### this
 this是一个指向当前对象实例的 指针 。
 ```
 void PrintEntity(const Entity& e);
@@ -22,7 +22,7 @@ void PrintEntity(const Entity& e)
 	//do something
 }
 ```
-### 关键字static
+### static
 两种用法：  
 1、在类或结构体外部使用static关键字  
 2、在类或结构体内部使用static  
@@ -67,7 +67,7 @@ int main()
 }
 ```
 )
-### 关键字c onst
+### const
 ```
 const int MAX_SIZE = 100; // 全局常量（静态存储区）
 void func() {
@@ -84,7 +84,7 @@ class MyClass {
 const MyClass obj;
 obj.readOnlyFunc(); // 合法调用
 ```
-### 关键字mutable
+### mutable
 将数据成员设置为可变的，就可以在const函数中对mutable变量进行修改。一般与const配合使用，有时也用于lambda表达式中。
 ```
 class Entity
