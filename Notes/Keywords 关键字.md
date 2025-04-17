@@ -124,3 +124,15 @@ std::vector<int>::iterator it = vec.begin();
 // 使用 auto
 auto it = vec.begin(); // 编译器自动推导为 vector<int>::iterator
 ```              
+### 关键字new
+```
+int* a = new int;
+int* b = new int[10];
+Entity* e = new Entity();//相当于Entity* e = (Entity*)malloc(sizeof(Entity)),但是最大的区别在于new调用了Entity的构造函数
+Entity* e1 = new Entity[10];
+
+delete a;
+delete[] b;
+delete e;
+delete[] e1;//不要忘了delete
+```

@@ -15,15 +15,3 @@ e1.GetName();  //直接访问
 // e1 在离开作用域时自动调用析构函数
 ```
 如何选择？对象太大或显式控制对象的生存期就在heap上创建，否则创建在stack
-### 关键字new
-```
-int* a = new int;
-int* b = new int[10];
-Entity* e = new Entity();//相当于Entity* e = (Entity*)malloc(sizeof(Entity)),但是最大的区别在于new调用了Entity的构造函数
-Entity* e1 = new Entity[10];
-
-delete a;
-delete[] b;
-delete e;
-delete[] e1;//不要忘了delete
-```
