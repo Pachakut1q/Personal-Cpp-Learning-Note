@@ -48,7 +48,8 @@ int s_Variable = 10;
 如果在一个类中定义了一个静态变量，那么在类的所有实例中，这个变量只有一个实例。  
 静态方法无法访问非静态变量，因为静态方法没有类实例。
 
-(3、Local Static  
+**(**  
+3、Local Static  
 ```
 class Singleton
 {
@@ -66,7 +67,7 @@ int main()
   return 0;
 }
 ```
-)
+**)**
 ### const
 ```
 const int MAX_SIZE = 100; // 全局常量（静态存储区）
