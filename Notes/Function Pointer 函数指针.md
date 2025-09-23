@@ -6,10 +6,10 @@ void HelloWorld(int a)
 }
 int main()
 {
-	void(*functionA)(int) = HelloWorld;
+	void(*functionA)(int) = HelloWorld; // 声明一个返回值为void，参数类型为int的名为functionA的函数指针
 	functionA(1);
 
-	typedef void(*HelloWorldFunction)(int);
+	typedef void(*HelloWorldFunction)(int); // 创建新类型表示"指向返回void且接受int参数的函数"的指针的别名HelloWorldFunction
 	HelloWorldFunction functionB = HelloWorld;
 	functionB(2);
 

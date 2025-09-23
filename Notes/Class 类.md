@@ -28,7 +28,6 @@ public:
 	}
 };
 ```
-
 ### 析构函数(destructor)
 在销毁对象时被调用。  
 如果在堆(heap)上手动分配了任何类型的内存，那么则需要手动清理，此时就可以利用析构函数。
@@ -38,6 +37,11 @@ public:
 	//Do something
 }
 ```
+### 构造函数不能是虚函数，析构函数可以是虚函数
+构造函数不能是虚函数：如果一个类定义了虚函数，则在初始化时需要**构造函数**初始化虚表指针，但如果构造函数本身是虚函数则需要通过虚表指针找到虚表再查找，但虚表指针其实并未初始化，形成悖论。  
+构造函数创建对象实例，虚函数需要对象实例的虚表指针调用。而在调用构造函数时，对象实例还不存在，正在创建中。因此，没有完整的对象来提供虚函数机制所需的上下文。  
+析构函数可以是虚函数：析构函数不仅可以声明为虚函数，当一个类打算被作为基类（即会被其他类继承）时，其析构函数通常必须声明为虚函数。为了在通过基类指针删除派生类对象时，能够正确调用整个析构链（先派生类，再基类）
+
 ### 可见性(Visibility)
 1.类的一个特征就是封装，public和private作用就是实现这一目的。  
 用户代码（类外）可以访问public成员而不能访问private成员；private成员只能由类成员（类内）和友元（friend）访问。  
@@ -105,14 +109,16 @@ private:
 	string m_Name;
 	int m_Age;
 public:
-	Entity(const string& name) : m_Name("name"), m_Age(0) {}
+	Entity(const string& name) : m_Name(name), m_Age(0) {}
 	Entity(int age) : m_Name("unknown"), m_Age(age) {};
 };
 
 int main()
 {
-	Entity e1 = string("name");//Entity e1 = "name"会报错，因为C++只允许一次用户定义的隐式转换
-	Entity e2 = 21;
+	Entity e1 = string("name");
+	// Entity e1 = "name"会报错，因为拷贝初始化（=）只允许一次用户定义的隐式转换
+	// const char[5] -> std::string -> Entity 发生了2次隐式转换
+	Entity e2 = 21; // int -> Entity
            
 	cin.get();
 	return 0;

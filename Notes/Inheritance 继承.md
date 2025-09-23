@@ -3,7 +3,7 @@
 class Entity
 {
 public:
-  floay X, Y;
+  float X, Y;
 
   void Move(float xa, float ya)
   {

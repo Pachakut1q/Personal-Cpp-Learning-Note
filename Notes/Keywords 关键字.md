@@ -95,6 +95,8 @@ private:
   mutable int m_DebugCount;
 public:
   const string& GetName() const
+  // 第一个const：返回一个指向常量字符串的引用，调用者不能通过此引用修改 m_Name 成员
+  // 第二个const：函数内部不能修改类的普通成员变量
   {
     m_DebugCount++;
     return m_Name;
