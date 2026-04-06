@@ -95,7 +95,10 @@ private:
 	string m_Name;
 	Example m_Example;
 public:
-	Entity() : m_Name("name"), m_Example(6)//一定要按照声明顺序
+	Entity() : m_Name("name"), m_Example(6)
+	// 一定要按照声明顺序
+	// 是为了避免一些未定义行为，因为类成员的初始化顺序始终按照它们在类定义中的声明顺序
+	// 而如果变量之间初始化时存在依赖关系就容易出现错误
 	{
 	}
 };

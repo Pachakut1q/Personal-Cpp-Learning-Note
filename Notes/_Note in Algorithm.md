@@ -70,3 +70,19 @@ public:
 在上述例子中，创建仿函数mycomparison是因为**优先级队列**的模板参数要求：  
 第一个参数Type、第二个参数Container，第三个参数为Compare 。Compare是一个比较器类型而非函数指针，如果比较器返回true，则第一个参数比第二个参数优先级更低。priority_queue默认是大顶堆，也就是在堆顶的是最大的元素，大的元素优先级高，Compare默认 < 。  
 对于该题应该使用小顶堆（频率前k个），所以自定义mycomparison类，使用 > ，元素更小的优先级更高，排在前面更靠近堆顶。
+
+
+### 判断字符是否为数字或字母
+\<cctype\>  
+**isalpha：** ```int isalpha(int c);``` 若 c 是字母（a-z 或 A-Z），返回非零值；否则返回 0。  
+**isdigit：** ```int isdigit(int c);``` 若 c 是数字（0-9），返回非零值；否则返回 0。  
+**isalnum：** ```int isalnum(int c);``` 若 c 是字母或数字（等价于 isalpha(c) || isdigit(c)），返回非零值；否则返回 0。  
+
+
+### 字母转换大小写
+\<cctype>  
+**tolower(char c)**  
+**toupper(char c)**  
+\<algorithm>  
+**transform(first, last, result, op)：** first是容器的首迭代器，last为容器的末迭代器，result为存放结果的容器，op为要进行操作的一元函数对象或sturct、class。  
+**transform(first1,last1,first2,result,binary_op)：** first1是第一个容器的首迭代器，last1为第一个容器的末迭代器，first2为第二个容器的首迭代器，result为存放结果的容器，binary_op为要进行操作的二元函数对象或sturct、class。
